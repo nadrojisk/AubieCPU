@@ -1,0 +1,199 @@
+-- Author Jordan Sosnowski
+-- Lab 3 (ALU) for Computer Architecture
+
+use work.dlx_types.all; --custom made package types (half word, word, etc)
+use work.bv_arithmetic.all; -- custom made package for arithmetic
+
+--------------------------- Arithmetic-Logic Unit (ALU) ------------------------
+-- ALU takes in two 32-bit values, and a 4-bit operation code that specifies
+-- which operation to perform on the two operands.
+-- When applicable operand1 will always goes on the left of the operator and
+-- operand2 on the right
+--------------------------------------------------------------------------------
+-- Operation Codes
+-- 0000 = unsigned add
+-- 0001 = unsigned subtract
+-- 0010 = two's complement add
+-- 0011 = two's complement subtract
+-- 0100 = two's complement multiply
+-- 0101 = two's complement divide
+-- 0110 = logical AND
+-- 0111 = bitwise AND
+-- 1000 = logical OR
+-- 1001 = bitwise OR
+-- 1010 = logical NOT of operand1 (ignore operand2)
+-- 1011 = bitwise NOT of operand1 (ignore operand2)
+-- 1100-1111 = just output all zeroes
+--------------------------------------------------------------------------------
+--  The ALU returns the 32-bit result of the operation and a 4-bit error code.
+--  Error Codes:
+--  0000 = no error
+--  0001 = overflow
+--  0010 = underflow
+--  0011 = divide by zero
+--------------------------------------------------------------------------------
+
+
+entity alu is
+	generic(prop_delay: Time := 15 ns);
+	port(
+    		operand1:   in dlx_word;  					-- Operand 1 input 32-bit
+    		operand2: in dlx_word;    					-- Operand 2 input 32-bit
+    		operation: in alu_operation_code;   				-- 4-bit Op Code
+		result: out dlx_word;     					-- Result output 32-bit
+    		error: out error_code     					-- Error code output 4-bit
+  );
+end entity alu;
+
+architecture behaviour of alu is
+	begin
+		alu : process(operand1, operand2, operation) is
+	    -- Local Variables
+			variable divByZero: boolean;
+	    variable tempResult: dlx_word := x"00000000";
+			variable true: dlx_word := x"00000001";
+			variable false: dlx_word := x"00000000";
+			variable OF_Flag : boolean;
+			variable inputOneTrue : bit;
+			variable inputTwoTrue : bit;
+
+	    begin
+				error <= "0000" after prop_delay; -- Default Error
+				case(operation) is
+					when "0000" => --unsigned add
+						bv_addu(operand1, operand2, tempResult, OF_Flag);
+						if(OF_Flag) then
+							error <= "0001" after prop_delay; -- overflow
+						end if;
+						result <= tempResult after prop_delay;
+
+	        			when "0001" => --unsigned subtract
+						bv_subu(operand1, operand2, tempResult, OF_Flag);
+						if(OF_Flag) then
+							error <= "0010" after prop_delay; -- subtracts do not have overflows but underflows
+						end if;
+						result <= tempResult after prop_delay;
+
+					when "0010" => --two's complement add
+						bv_add(operand1, operand2, tempResult, OF_Flag);
+						if(OF_Flag) then
+							-- (+X) + (+Y) = (-Z)
+	  						if ((operand1(31) = '0') and (operand2(31) = '0') and
+								(tempResult(31) = '1')) then
+									error <= "0001" after prop_delay; --overflow
+		          				-- (-X) + (-Y) = (+Z)
+							elsif ((operand1(31) = '1') and (operand2(31) = '1') and
+								(tempResult(31) = '0')) then
+									error <= "0010" after prop_delay; --underflow
+							end if;
+						end if;
+						result <= tempResult after prop_delay;
+
+					when "0011" => --two's complement subtract
+						bv_sub(operand1, operand2, tempResult, OF_Flag);
+						if(OF_Flag) then
+							-- (-X) - (+Y) = +Z
+							if ((operand1(31) = '1') and (operand2(31) = '0') and
+								(tempResult(31) = '0')) then
+									error <= "0010" after prop_delay; --underflow
+							-- (+X) - (-Y) = (-Z)
+							elsif ((operand1(31) = '0') and (operand2(31) = '1') and
+								(tempResult(31) = '1')) then
+									error <= "0001" after prop_delay; --overflow
+							end if;
+						end if;
+						result <= tempResult after prop_delay;
+
+					when "0100" => --two's complement multiply
+						bv_mult(operand1, operand2, tempResult, OF_Flag);
+						if(OF_Flag) then
+							-- (-X) * (+Y) = (+Z)
+							if ((operand1(31) = '1') and (operand2(31) = '0') and
+								(tempResult(31) = '0')) then
+									error <= "0010" after prop_delay; --underflow
+							-- (+X) * (-Y) = (+Z)
+							elsif ((operand1(31) = '0') and (operand2(31) = '1') and
+								(tempResult(31) = '0')) then
+									error <= "0010" after prop_delay; --underflow
+							else -- ((+X) * (+Y) = (-Z)) or ((-X ) * (-Y) = (-Z))
+									error <= "0001" after prop_delay; --overflow
+							end if;
+						end if;
+						result <= tempResult after prop_delay;
+
+					when "0101" => --two's complement divide
+		  				bv_div(operand1, operand2, tempResult, divByZero, OF_Flag);
+		  				if divByZero then
+		      					error <= "0011" after prop_delay;
+		  				elsif OF_Flag then
+		      					error <= "0010" after prop_delay; -- only an underflow can occur with divide
+		  				end if;
+		  				result <= tempResult after prop_delay;
+
+					when "0110" => --logical and
+						result <= false;
+						inputOneTrue := '0';
+						inputTwoTrue := '0';
+						for i in 31 downto 0 loop
+							if operand1(i) = '1' then
+								inputOneTrue := '1';
+							end if;
+							if operand2(i) = '1' then
+								inputTwoTrue := '1';
+							end if;
+						end loop;
+						if ((inputOneTrue = '1') and (inputTwoTrue = '1')) then
+							result <= true after prop_delay;
+						end if;
+
+
+					when "0111" => --bitwise and
+						for i in 31 downto 0 loop
+							tempResult(i) := operand1(i) and operand2(i);
+						end loop;
+						result <= tempResult after prop_delay;
+
+					when "1000" => --logical or
+						result <= false after prop_delay;
+						inputOneTrue := '0';
+						inputTwoTrue := '0';
+						for i in 31 downto 0 loop
+							if operand1(i) = '1' then
+								inputOneTrue := '1';
+							end if;
+							if operand2(i) = '1' then
+								inputTwoTrue := '1';
+							end if;
+						end loop;
+						if ((inputOneTrue ='1') or (inputTwoTrue = '1')) then
+							result <= true after prop_delay;
+						end if;
+
+					when "1001" => --bitwise or
+						for i in 31 downto 0 loop
+							tempResult(i) := operand1(i) or operand2(i);
+						end loop;
+						result <= tempResult after prop_delay;
+
+					when "1010" => --logical not
+						result <= true after prop_delay;
+						inputOneTrue := '0';
+						for i in 31 downto 0 loop
+							if operand1(i) = '1' then
+								inputOneTrue := '1';
+							end if;
+						end loop;
+						if (inputOneTrue = '1') then
+							result <= false after prop_delay;
+						end if;
+
+					when "1011" => --bitwise not
+						for i in 31 downto 0 loop
+							tempResult(i) := not operand1(i);
+						end loop;
+						result <= tempResult after prop_delay;
+					when others => --1100 - 1111
+						result <= x"00000000" after prop_delay;
+				end case;
+		end process alu;
+end architecture behaviour;

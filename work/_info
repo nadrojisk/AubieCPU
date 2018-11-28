@@ -1,0 +1,422 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Modeltech_pe_edu_10.4a/examples
+Ealu
+Z0 w1543420182
+Z1 DPx4 work 13 bv_arithmetic 0 22 ;=2SeGQPb=ziI`4efIfkn0
+Z2 DPx4 work 9 dlx_types 0 22 N;][EXI4VdHCK129TNO5`0
+Z3 dC:/Users/jsosn/Documents/GitHub/aubie_cpu
+Z4 8C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/datapath_aubie_v1.vhd
+Z5 FC:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/datapath_aubie_v1.vhd
+l0
+L40
+Vd_Engli`XO7GlC1bM<:Ud3
+!s100 hziP2X62OCc=Afz@S>z281
+Z6 OP;C;10.4a;61
+32
+Z7 !s110 1543420188
+!i10b 1
+Z8 !s108 1543420187.000000
+Z9 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/datapath_aubie_v1.vhd|
+Z10 !s107 C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/datapath_aubie_v1.vhd|
+!i113 1
+Z11 o-work work -2002 -explicit -O0
+Z12 tExplicit 1
+Abehaviour
+R1
+R2
+Z13 DEx4 work 3 alu 0 22 d_Engli`XO7GlC1bM<:Ud3
+l73
+L72
+VF7=zaaLoYMYB6_7R0?6K_3
+!s100 Z@hg[Ui8DdX3>cHOmRk^o2
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Eaubie
+Z14 w1543367580
+R2
+R1
+R3
+Z15 8C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/interconnect_aubie.vhd
+Z16 FC:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/interconnect_aubie.vhd
+l0
+L6
+V4ESA;O^c<2dJh_zk:5Nng1
+!s100 ^BkcC0=[[Z=7dOM<k:9AG1
+R6
+32
+Z17 !s110 1543420195
+!i10b 1
+Z18 !s108 1543420195.000000
+Z19 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/interconnect_aubie.vhd|
+Z20 !s107 C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/interconnect_aubie.vhd|
+!i113 1
+R11
+R12
+Astruct
+Z21 DEx4 work 9 pcplusone 0 22 [0VK[4dj219?S1_2`z?AV0
+Z22 DEx4 work 12 threeway_mux 0 22 ?0WK_g0SVl3Y>SQzi`LAD0
+Z23 DEx4 work 3 mux 0 22 H^f<CJV^6L;9g=PEW:jY=3
+R13
+Z24 DEx4 work 8 reg_file 0 22 o<KBdb=ZdZA[OUA2jJaP@3
+Z25 DEx4 work 12 dlx_register 0 22 >TCUKBz?V9I10l`jF=1MM3
+Z26 DEx4 work 6 memory 0 22 H^hmcNhZC58Q5EJf7<LmL0
+Z27 DEx4 work 16 aubie_controller 0 22 NN>U>8R3<CADZCciNd6W30
+R2
+R1
+DEx4 work 5 aubie 0 22 4ESA;O^c<2dJh_zk:5Nng1
+l41
+L10
+VgHl4mG8^Sec^Y_Z^;BCF@1
+!s100 MZFC7<1A8^U?d]0Zh3C>l3
+R6
+32
+R17
+!i10b 1
+R18
+R19
+R20
+!i113 1
+R11
+R12
+Eaubie_controller
+Z28 w1543420838
+R2
+R1
+R3
+Z29 8C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/control_aubie_v1.vhd
+Z30 FC:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/control_aubie_v1.vhd
+l0
+L5
+VJk67]4RaMCXWB5HDUk5DZ0
+!s100 @GMI<23]@2h^8`1_;n`m^2
+R6
+32
+Z31 !s110 1543420843
+!i10b 1
+Z32 !s108 1543420843.000000
+Z33 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/control_aubie_v1.vhd|
+Z34 !s107 C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/control_aubie_v1.vhd|
+!i113 1
+R11
+R12
+Abehavior
+R2
+R1
+DEx4 work 16 aubie_controller 0 22 Jk67]4RaMCXWB5HDUk5DZ0
+l35
+L34
+Veah?g18=Y<COJ_;5SCjZk0
+!s100 bKNeWacUL1`D1E=BUQEEQ0
+R6
+32
+R31
+!i10b 1
+R32
+R33
+R34
+!i113 1
+R11
+R12
+Pbv_arithmetic
+w1541096772
+R3
+8C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/bva.vhd
+FC:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/bva.vhd
+l0
+L15
+V;=2SeGQPb=ziI`4efIfkn0
+!s100 DK;Y`J0lJAh`j:XUgQ7B<1
+R6
+32
+b1
+!s110 1543367785
+!i10b 1
+!s108 1543367785.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/bva.vhd|
+!s107 C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/bva.vhd|
+!i113 1
+R11
+R12
+Bbody
+R1
+w1541096777
+8C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/bva-b.vhd
+FC:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/bva-b.vhd
+l0
+L1
+VLPF@=`8X>]9I@:nc^2mYE3
+!s100 ;^d^hPQojBY3:39_Lf`ZP1
+R6
+32
+!s110 1543367786
+!i10b 1
+!s108 1543367786.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/bva-b.vhd|
+!s107 C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/bva-b.vhd|
+!i113 1
+R11
+R12
+nbody
+Edlx_register
+R0
+R2
+R3
+R4
+R5
+l0
+L229
+V>TCUKBz?V9I10l`jF=1MM3
+!s100 9cekk_7H_K8=^<Oh<Q9H]1
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Abehavior
+R2
+R25
+l238
+L238
+V<3VC5_00`EKz0aHzH=DGS3
+!s100 ]4[`8fEf;;<m>P?57MhH92
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Pdlx_types
+w1541096755
+R3
+8C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/dlx-types.vhd
+FC:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/dlx-types.vhd
+l0
+L2
+VN;][EXI4VdHCK129TNO5`0
+!s100 E2c;:eYf;hh[jFU?F_ci41
+R6
+32
+!s110 1543367784
+!i10b 1
+!s108 1543367784.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/dlx-types.vhd|
+!s107 C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/dlx-types.vhd|
+!i113 1
+R11
+R12
+Ememory
+R0
+R1
+R2
+R3
+R4
+R5
+l0
+L322
+VH^hmcNhZC58Q5EJf7<LmL0
+!s100 <mF[3HCZzZ68:a6iEU6X72
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Abehavior
+R1
+R2
+R26
+l334
+L332
+V>4IF@Y?F28MND[KN22bC21
+!s100 ;R:FZW5;9BfH6DBTZQDB11
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Emux
+R0
+R2
+R3
+R4
+R5
+l0
+L276
+VH^f<CJV^6L;9g=PEW:jY=3
+!s100 AU_Zz>4BXA?ZkbklK[;1I2
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Abehavior
+R2
+R23
+l282
+L281
+V;9GGSi@KJT2NEaB_@MZhS3
+!s100 g3G?=nfH<G:_K_VB;@<;R3
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Epcplusone
+R0
+R1
+R2
+R3
+R4
+R5
+l0
+L254
+V[0VK[4dj219?S1_2`z?AV0
+!s100 <5^Y2O2I?bA^=7=]^GF;X1
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Abehavior
+R1
+R2
+R21
+l260
+L259
+VY46ZemfWV<?Wn5PeT7Aae3
+!s100 W>>TbP<4Q=7R<NKOdC_EK2
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Ereg_file
+R0
+R1
+R2
+R3
+R4
+R5
+l0
+L7
+Vo<KBdb=ZdZA[OUA2jJaP@3
+!s100 5KI3FHSkTo9RKY8`_KW`00
+R6
+32
+!s110 1543420187
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Abehaviour
+R1
+R2
+R24
+l20
+L18
+VSdg5@O2M<F^?O<:V`2GGN2
+!s100 ;9DHkAQWG:h4CYe=8UkK`0
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Ethreeway_mux
+R0
+R2
+R3
+R4
+R5
+l0
+L297
+V?0WK_g0SVl3Y>SQzi`LAD0
+!s100 mlc7]I=YLSLYRdka_0l7T3
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Abehavior
+R2
+R22
+l303
+L302
+VVdOn0e:`UVC22D][zT;dW1
+!s100 60[Mi2ZZbzfBg>>RVhTS=3
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
