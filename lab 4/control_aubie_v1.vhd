@@ -206,6 +206,8 @@ begin
 				op2_clk <= '0' after prop_delay;
 				result_clk <= '0' after prop_delay;
 				state := 1;
+			when 12 =>
+				addr_mux <= '0' after prop_delay;			
 			when 19 =>
 				pc_mux <= "00" after prop_delay;
 				pc_clk <= '1' after prop_delay;
