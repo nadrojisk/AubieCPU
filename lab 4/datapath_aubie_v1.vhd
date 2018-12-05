@@ -341,20 +341,20 @@ begin  -- behavior
     begin
       -- fill this in by hand to put some values in there
       -- some instructions
-      data_memory(0) :=  X"30200000"; --LD R4, 0x100 = 256
+      data_memory(0) :=  X"30200000"; --LD R4, 0x100
       data_memory(1) :=  X"00000100"; -- address 0x100 for previous instruction
       -- R4 = Contents of Mem Addr x100 = x"5500FF00"
 
-      data_memory(2) :=  X"30080000"; -- LD R1, 0x101 = 257
+      data_memory(2) :=  X"30080000"; -- LD R1, 0x101
       data_memory(3) :=  X"00000101"; -- address 0x101 for previous instruction
       -- R1 = Contents of Mem Addd x101 = x"AA00FF00"
 
 
-      data_memory(4) :=  X"30100000"; -- LD R2, 0x102 = 258
+      data_memory(4) :=  X"30100000"; -- LD R2, 0x102
       data_memory(5) :=  X"00000102"; -- address 0x102 for previous instruction
       -- R2 = Contents of Mem Addr x102 = x"00000001"
 
-      data_memory(6) :=  "00000000000110000100010000000000"; -- ADDU R3,R1 R2
+      data_memory(6) :=  "00000000000110000100010000000000"; -- ADDU R3,R1, R2
       -- R3 = Contents of (R1 + R2) = x"AA00FF01"
 
       data_memory(7) :=  "00100000000000001100000000000000"; -- STO R3, 0x103
@@ -362,9 +362,10 @@ begin  -- behavior
       -- Mem Addr x"103" = data_memory(259) := contents of R3 = x"AA00FF01"
 
 
-      data_memory(9) :=  "00110001000000000000000000000000"; -- LDI R0, 0x104
+      data_memory(9) :=  x"31000000"; -- LDI R0, 0x104
       data_memory(10) := x"00000104"; -- #Imm value 0x104 for previous instruction
-      -- Contents of R0 = x"00000104"
+      -- R0 = x"00000104"
+
 
       data_memory(11) := "00100010000000001100000000000000"; -- STOR (R0), R3
       -- Contents of Mem Addr specifed by R0 (x104 = 260) = Contents of R3 = x"AA00FF01"
@@ -383,14 +384,14 @@ begin  -- behavior
       data_memory(258) := "00000000000000000000000000000001"; -- x"102" = 258
 
       -- We Jumped here from Addr 14 = x"0000000E"
-      data_memory(261) :=  x"00584400"; -- ADDU R11,R1,R2
-
-      data_memory(262) := x"4101C000"; -- JZ R7, 267 = x"10B" -- If R7 == 0, GOTO Addr 267
-      data_memory(263) := x"0000010B"; -- Address to jump to for previous instruction
+      data_memory(261) :=  x"01584400"; -- SUBU R11,R1,R2
+      data_memory(262) := "00110001001110000000000000000000"; -- LDI R7, 0
+      data_memory(263) := x"4101C000"; -- JZ R7, 267 = x"10B" -- If R7 == 0, GOTO Addr 267
+      data_memory(264) := x"0000010B"; -- Address to jump to for previous instruction
       -- JZ to Mem Addr x"10B" is an Add Operation --> ADDU R12, R1 R2 => Contents of R12 = x"AA00FF01"
 
       -- We jumped here from Addr 263 = x"00000107"
-      data_memory(267) := x"00604400"; -- ADDU R12, R1 R2
+      data_memory(267) := x"04604400"; -- MUL R12, R1, R2
 
       data_memory(268) := x"10000000"; -- NOOP
 

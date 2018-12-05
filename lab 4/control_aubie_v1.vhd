@@ -2,33 +2,36 @@
 use work.bv_arithmetic.all;
 use work.dlx_types.all;
 
+
+
 entity aubie_controller is
 	generic(
-	        prop_delay    : Time := 5 ns;
-	        xt_prop_delay : Time := 15 ns -- Extended prop_delay for allowing other signals to propagate first
+	     prop_delay    				: 	Time := 5 ns;
+	     xt_prop_delay 				: 	Time := 15 ns -- Extended prop_delay for allowing other signals to propagate first
 	);
-	port(ir_control: in dlx_word;
-	     alu_out: in dlx_word;
-	     alu_error: in error_code;
-	     clock: in bit;
-	     regfilein_mux: out threeway_muxcode;
-	     memaddr_mux: out threeway_muxcode;
-	     addr_mux: out bit;
-	     pc_mux: out threeway_muxcode;
-	     alu_func: out alu_operation_code;
-	     regfile_index: out register_index;
-	     regfile_readnotwrite: out bit;
-	     regfile_clk: out bit;
-	     mem_clk: out bit;
-	     mem_readnotwrite: out bit;
-	     ir_clk: out bit;
-	     imm_clk: out bit;
-	     addr_clk: out bit;
-             pc_clk: out bit;
-	     op1_clk: out bit;
-	     op2_clk: out bit;
-	     result_clk: out bit
-	     );
+	port(
+			ir_control						: 	in dlx_word;
+	    alu_out								: 	in dlx_word;
+	    alu_error							:		in error_code;
+	    clock									: 	in bit;
+	    regfilein_mux					: 	out threeway_muxcode;
+	    memaddr_mux						: 	out threeway_muxcode;
+	    addr_mux							: 	out bit;
+	    pc_mux								: 	out threeway_muxcode;
+	    alu_func							: 	out alu_operation_code;
+	    regfile_index					: 	out register_index;
+	    regfile_readnotwrite	: 	out bit;
+	    regfile_clk						: 	out bit;
+	    mem_clk								: 	out bit;
+	    mem_readnotwrite			: 	out bit;
+	    ir_clk								: 	out bit;
+	    imm_clk								: 	out bit;
+	    addr_clk							:	 	out bit;
+    	pc_clk								: 	out bit;
+	    op1_clk								: 	out bit;
+	    op2_clk								: 	out bit;
+	    result_clk						: 	out bit
+	   );
 end aubie_controller;
 
 architecture behavior of aubie_controller is
@@ -50,7 +53,7 @@ begin
 				memaddr_mux <= "00" after prop_delay; -- memory threeway_mux input_0 to read from PC
 				regfile_clk <= '0' after prop_delay;
 				mem_clk <= '1' after prop_delay;
-				mem_readnotwrite <= '1' after prop_delay;
+				mem_readnotwrite <= '1' after prop_delay; -- reading instruction from mem
 				ir_clk <= '1' after prop_delay; -- High so Instruction Register can receive a signal from Memory
 				imm_clk <= '0' after prop_delay;
 				addr_clk <= '0' after prop_delay;
@@ -58,11 +61,9 @@ begin
 				op1_clk <= '0' after prop_delay;
 				op2_clk <= '0' after prop_delay;
 				result_clk <= '0' after prop_delay;
-
-
 				state := 2;
-			when 2 =>
 
+			when 2 =>
 				-- figure out which instruction
 			 	if opcode(7 downto 4) = "0000" then -- ALU op
 					state := 3;
@@ -80,19 +81,22 @@ begin
 					state := 19;
 				else -- error
 				end if;
+
 			when 3 =>
-				-- ALU op:  load op1 register from the regfile
+				-- ALU op:  load operand 1 register from the regfile to op1
 				regfile_index <= operand1 after prop_delay;
-				regfile_readnotwrite <= '1' after prop_delay;
-				regfile_clk <= '1' after prop_delay;
+				regfile_readnotwrite <= '1' after prop_delay; -- reading op from regfile
+				regfile_clk <= '1' after prop_delay; -- high so register can receive value
 				mem_clk <= '0' after prop_delay;
 				ir_clk <= '0' after prop_delay;
 				imm_clk <= '0' after prop_delay;
 				addr_clk <= '0' after prop_delay;
+				pc_clk <= '0' after prop_delay;
 				op1_clk <= '1' after prop_delay; -- needs to be high so it can accept regfile data
 				op2_clk <= '0' after prop_delay;
 				result_clk <= '0' after prop_delay;
 				state := 4;
+
 			when 4 =>
 				-- ALU op: load op2 registear from the regfile
 				regfile_index <= operand2 after prop_delay;
@@ -102,51 +106,63 @@ begin
 				ir_clk <= '0' after prop_delay;
 				imm_clk <= '0' after prop_delay;
 				addr_clk <= '0' after prop_delay;
+				pc_clk <= '0' after prop_delay;
 				op1_clk <= '0' after prop_delay;
 				op2_clk <= '1' after prop_delay; -- needs to be high so it can accept regfile data
 				result_clk <= '0' after prop_delay;
 				state := 5;
+
 			when 5 =>
 				-- ALU op:  perform ALU operation
 				-- your code here
 				alu_func <= opcode(3 downto 0) after prop_delay;
-				regfile_clk <= '1' after prop_delay;
+				regfile_clk <= '0' after prop_delay;
 				mem_clk <= '0' after prop_delay;
 				ir_clk <= '0' after prop_delay;
 				imm_clk <= '0' after prop_delay;
 				addr_clk <= '0' after prop_delay;
+				pc_clk <= '0' after prop_delay;
 				op1_clk <= '0' after prop_delay;
-				op2_clk <= '0' after prop_delay; -- needs to be high so it can accept regfile data
-				result_clk <= '1' after prop_delay;
+				op2_clk <= '0' after prop_delay;
+				result_clk <= '1' after prop_delay; -- high so it can accept alu data
 				state := 6;
+
 			when 6 =>
 				-- ALU op: write back ALU operation
-				-- your code here
-				regfilein_mux <= "00" after prop_delay;
-				pc_mux <= "00" after prop_delay;
+				regfilein_mux <= "00" after prop_delay; -- selects result
+				pc_mux <= "00" after prop_delay; -- selects pcplusone_out
 				regfile_index <= destination after prop_delay;
-				regfile_readnotwrite <= '0' after prop_delay;
+				regfile_readnotwrite <= '0' after prop_delay; -- Write back to destination
 				regfile_clk <= '1' after prop_delay;
+				ir_clk <= '0' after prop_delay;
 				imm_clk <= '0' after prop_delay;
-				pc_clk <= '1' after prop_delay;
+				addr_clk <= '0' after prop_delay;
+				pc_clk <= '1' after prop_delay; -- To increment PC
 				op1_clk <= '0' after prop_delay;
 				op2_clk <= '0' after prop_delay;
 				result_clk <= '0' after prop_delay;
 				state := 1;
+
 			when 7 =>
 				-- LD or LDI: get the addr or immediate word
-			  -- your code here
 				pc_clk <= '1' after prop_delay;
-				pc_mux <= "00" after prop_delay;
-				memaddr_mux <= "00" after prop_delay;
+				pc_mux <= "00" after prop_delay; -- pcplusone_out
+				memaddr_mux <= "00" after prop_delay; -- mux select read from pcplusone_out
+				addr_mux <= '1' after prop_delay; -- input_1 select of mem_out
 				regfile_clk <= '0' after prop_delay;
-				mem_readnotwrite <= '1' after prop_delay;
-				ir_clk <= '0' after prop_delay;
-				imm_clk <= '1' after prop_delay;
-				addr_clk <= '0' after prop_delay;
+				mem_clk <= '1' after prop_delay;
+				mem_readnotwrite <= '1' after prop_delay; -- Memory Read operation
 				op1_clk <= '0' after prop_delay;
 				op2_clk <= '0' after prop_delay;
 				result_clk <= '0' after prop_delay;
+				ir_clk <= '0' after prop_delay;
+				if (opcode = x"30") then -- LD
+						imm_clk <= '0' after prop_delay;
+						addr_clk <= '1' after prop_delay;
+				elsif (opcode = x"31") then -- LDI
+						imm_clk <= '1' after prop_delay;
+						addr_clk <= '0' after prop_delay;
+				end if;
 				state := 8;
 			when 8 =>
 				-- LD or LDI
@@ -173,7 +189,7 @@ begin
 				result_clk <= '0' after prop_delay;
 				pc_clk <= '0' after prop_delay, '1' after xt_prop_delay;
 				pc_mux <= "00" after xt_prop_delay;
-				-- We don't want to increment PC untila fter other values are propagated
+				-- We don't want to increment PC until after other values are propagated
 				state := 1;
 			when 9 => -- STO
 				pc_mux <= "00" after prop_delay;
@@ -269,9 +285,56 @@ begin
 				op2_clk <= '1' after prop_delay;
 				result_clk <= '1' after prop_delay;
 				state := 1;
-			when 16 => -- JMP / JZ 
+			when 16 => -- JMP / JZ
+				pc_clk <= '1' after prop_delay;
+				pc_mux <= "00" after prop_delay;
+				state := 17;
 			when 17 =>
+				pc_clk <= '0' after prop_delay;
+				memaddr_mux <= "00" after prop_delay;
+				addr_mux <= '1' after prop_delay;
+				regfile_clk <= '0' after prop_delay;
+				mem_clk <= '1' after prop_delay;
+				mem_readnotwrite <= '1' after prop_delay;
+				ir_clk <= '0' after prop_delay;
+				imm_clk <= '0' after prop_delay;
+				addr_clk <= '1' after prop_delay;
+				op1_clk <= '0' after prop_delay;
+				op2_clk <= '0' after prop_delay;
+				result_clk <= '0' after prop_delay;
+				next_state := 18;
+				if (opcode = x"41") then -- JZ
+					alu_func <= jz_op after prop_delay;
+					regfile_index <= operand1 after prop_delay;
+					regfile_readnotwrite <= '1' after prop_delay;
+					regfile_clk <= '1' after prop_delay;
+					mem_clk <= '0' after prop_delay;
+					ir_clk <= '0' after prop_delay;
+					imm_clk <= '0' after prop_delay;
+					addr_clk <= '0' after prop_delay;
+					pc_clk <= '0' after prop_delay;
+					op1_clk <= '1' after prop_delay;
+					op2_clk <= '1' after prop_delay;
+					result_clk <= '1' after prop_delay;
+				end if;
+				state := 18;
 			when 18 =>
+				if (opcode = x"40") then -- JMP
+				-- Load Addr to PC: Addr --> PC
+						pc_mux <= "01" after prop_delay;
+						pc_clk <= '1' after prop_delay;
+				end if;
+				if (opcode = x"41") then -- JZ
+				-- If Result == 0, copy Addr to PC: Addr --> PC, else increment PC --> PC+1
+						if (alu_out = logical_true) then
+								pc_mux <= "01" after prop_delay;
+								pc_clk <= '1' after prop_delay;
+						else
+								pc_clk <= '1' after prop_delay;
+								pc_mux <= "00" after prop_delay;
+						end if;
+				end if;
+			  state := 1;
 			when 19 =>
 				pc_mux <= "00" after prop_delay;
 				pc_clk <= '1' after prop_delay;
