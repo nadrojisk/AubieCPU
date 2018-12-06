@@ -15,7 +15,7 @@ entity reg_file is
           );
 end entity reg_file;
 
-architecture behaviour of reg_file is
+architecture behavior of reg_file is
 type reg_type is array (0 to 31) of dlx_word;
 begin
 		reg_file : process(readnotwrite, clock, reg_number, data_in) is
@@ -31,7 +31,7 @@ begin
 
 
 		end process reg_file;
-end architecture behaviour;
+end architecture behavior;
 
 -- entity alu (lab 3)
 use work.dlx_types.all;
@@ -69,7 +69,7 @@ end entity alu;
 -- 0010 = underflow (too small neagative)
 -- 0011 = divide by zero
 
-architecture behaviour of ALU is
+architecture behavior of ALU is
 	begin
 		alu_process : process(operand1, operand2, operation) is
 	    -- Local Variables
@@ -220,7 +220,7 @@ architecture behaviour of ALU is
 						result <= x"00000000" after prop_delay;
 				end case;
 		end process alu_process;
-end architecture behaviour;
+end architecture behavior;
 
 
 -- entity dlx_register (lab 3)

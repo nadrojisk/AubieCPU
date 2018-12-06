@@ -41,6 +41,11 @@ begin
 		variable state: state_type := 1;
 		variable opcode: byte;
 		variable destination,operand1,operand2 : register_index;
+		variable stor_op : alu_operation_code := "0111";
+		variable jz_op : alu_operation_code := "1100";
+		variable true : dlx_word := x"00000001";
+		variable false : dlx_word := x"00000000";
+		
 
 	begin
 		if clock'event and clock = '1' then
@@ -239,7 +244,7 @@ begin
 			when 13 =>
 				regfilein_mux <= "01" after prop_delay;
 				memaddr_mux <= "01" after prop_delay;
-				regfile_index <= destinnation after prop_delay;
+				regfile_index <= destination after prop_delay;
 				regfile_readnotwrite <= '0' after prop_delay;
 				regfile_clk <= '1' after prop_delay;
 				mem_clk <= '1' after prop_delay;
@@ -302,20 +307,20 @@ begin
 				op1_clk <= '0' after prop_delay;
 				op2_clk <= '0' after prop_delay;
 				result_clk <= '0' after prop_delay;
-				next_state := 18;
+				state := 18;
 				if (opcode = x"41") then -- JZ
-					alu_func <= jz_op after prop_delay;
-					regfile_index <= operand1 after prop_delay;
-					regfile_readnotwrite <= '1' after prop_delay;
-					regfile_clk <= '1' after prop_delay;
-					mem_clk <= '0' after prop_delay;
-					ir_clk <= '0' after prop_delay;
-					imm_clk <= '0' after prop_delay;
-					addr_clk <= '0' after prop_delay;
-					pc_clk <= '0' after prop_delay;
-					op1_clk <= '1' after prop_delay;
-					op2_clk <= '1' after prop_delay;
-					result_clk <= '1' after prop_delay;
+					alu_func <= jz_op after xt_prop_delay;
+					regfile_index <= operand1 after xt_prop_delay;
+					regfile_readnotwrite <= '1' after xt_prop_delay;
+					regfile_clk <= '1' after xt_prop_delay;
+					mem_clk <= '0' after xt_prop_delay;
+					ir_clk <= '0' after xt_prop_delay;
+					imm_clk <= '0' after xt_prop_delay;
+					addr_clk <= '0' after xt_prop_delay;
+					pc_clk <= '0' after xt_prop_delay;
+					op1_clk <= '1' after xt_prop_delay;
+					op2_clk <= '1' after xt_prop_delay;
+					result_clk <= '1' after xt_prop_delay;
 				end if;
 				state := 18;
 			when 18 =>
@@ -326,7 +331,7 @@ begin
 				end if;
 				if (opcode = x"41") then -- JZ
 				-- If Result == 0, copy Addr to PC: Addr --> PC, else increment PC --> PC+1
-						if (alu_out = logical_true) then
+						if (alu_out = true) then
 								pc_mux <= "01" after prop_delay;
 								pc_clk <= '1' after prop_delay;
 						else

@@ -1,0 +1,458 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Program Files (x86)/ModelSim/examples
+Ealu
+Z0 w1544053967
+Z1 DPx4 work 13 bv_arithmetic 0 22 LZgoU72;<NkmOWPlz8?Of2
+Z2 DPx4 work 9 dlx_types 0 22 SfgQL^gT<gj;>DaGVOmaZ3
+Z3 d//sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 4
+Z4 8//sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 4/datapath_aubie_v1.vhd
+Z5 F//sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 4/datapath_aubie_v1.vhd
+l0
+L40
+V@[T<P=jdid^0hY>N<o1^X0
+!s100 hziP2X62OCc=Afz@S>z281
+Z6 OP;C;10.6b;65
+32
+Z7 !s110 1544054020
+!i10b 1
+Z8 !s108 1544054019.000000
+Z9 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|//sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 4/datapath_aubie_v1.vhd|
+Z10 !s107 //sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 4/datapath_aubie_v1.vhd|
+!i113 1
+Z11 o-work work -2002 -explicit
+Z12 tExplicit 1 CvgOpt 0
+Abehavior
+R1
+R2
+Z13 DEx4 work 3 alu 0 22 @[T<P=jdid^0hY>N<o1^X0
+l73
+L72
+V9XK^JWFY::;oWHa7JU^Gj1
+!s100 2Kc^`>H`DlhJ4^YGkZ3V00
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Abehaviour
+R1
+R2
+R13
+l73
+L72
+VcIfK32UPe>=VMQ5]48<103
+!s100 Z@hg[Ui8DdX3>cHOmRk^o2
+R6
+32
+Z14 !s110 1544050827
+!i10b 1
+Z15 !s108 1544050826.000000
+R9
+R10
+!i113 1
+R11
+R12
+Z16 w1543968956
+Eaubie
+R16
+R2
+R1
+R3
+Z17 8//sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 4/interconnect_aubie.vhd
+Z18 F//sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 4/interconnect_aubie.vhd
+l0
+L6
+VhjDUUV^]a=cKz]j`fj@XI2
+!s100 ^BkcC0=[[Z=7dOM<k:9AG1
+R6
+32
+Z19 !s110 1544050828
+!i10b 1
+Z20 !s108 1544050828.000000
+Z21 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|//sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 4/interconnect_aubie.vhd|
+Z22 !s107 //sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 4/interconnect_aubie.vhd|
+!i113 1
+R11
+R12
+Astruct
+Z23 DEx4 work 9 pcplusone 0 22 0IaTc1iE=R9e`b<<UX4>_0
+Z24 DEx4 work 12 threeway_mux 0 22 U1bz7f8DFTL>;IT=MWEIJ0
+Z25 DEx4 work 3 mux 0 22 fLT9U5`WgoJjL=7zL;8^:3
+R13
+Z26 DEx4 work 8 reg_file 0 22 @oe<5gb=j5XjgUI9BRTdY3
+Z27 DEx4 work 12 dlx_register 0 22 a5ob8l9X9]h8[03<nA_l:1
+Z28 DEx4 work 6 memory 0 22 cmk@YI6lN1MEESX0OL7k`2
+Z29 DEx4 work 16 aubie_controller 0 22 aFi[M`R6XY8JzZNd0zTok0
+R2
+R1
+DEx4 work 5 aubie 0 22 hjDUUV^]a=cKz]j`fj@XI2
+l40
+L10
+VHUcA1<0O8`HJaMakfkl<_2
+!s100 YVH3S:6O;N7^ZbWS`om3m2
+R6
+32
+Z30 !s110 1544050829
+!i10b 1
+R20
+R21
+R22
+!i113 1
+R11
+R12
+Eaubie_controller
+Z31 w1544051861
+R2
+R1
+R3
+Z32 8//sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 4/control_aubie_v1.vhd
+Z33 F//sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 4/control_aubie_v1.vhd
+l0
+L7
+VaFi[M`R6XY8JzZNd0zTok0
+!s100 m<fhNH9nYJALh^YE^Oi6c3
+R6
+32
+Z34 !s110 1544051864
+!i10b 1
+Z35 !s108 1544051863.000000
+Z36 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|//sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 4/control_aubie_v1.vhd|
+Z37 !s107 //sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 4/control_aubie_v1.vhd|
+!i113 1
+R11
+R12
+Abehavior
+R2
+R1
+R29
+l38
+L37
+V;c@`Q_kXjS7gbGB9X:PeG2
+!s100 l2]H9[SIfo1V`NccBNXg62
+R6
+32
+R34
+!i10b 1
+R35
+R36
+R37
+!i113 1
+R11
+R12
+Pbv_arithmetic
+R16
+R3
+8//sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 2/bva.vhd
+F//sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 2/bva.vhd
+l0
+L15
+VLZgoU72;<NkmOWPlz8?Of2
+!s100 DK;Y`J0lJAh`j:XUgQ7B<1
+R6
+32
+b1
+R30
+!i10b 1
+!s108 1544050829.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|//sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 2/bva.vhd|
+!s107 //sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 2/bva.vhd|
+!i113 1
+R11
+R12
+Bbody
+R1
+8//sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 2/bva-b.vhd
+F//sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 2/bva-b.vhd
+l0
+L1
+VIOX_LK53`U3VRDI:D^iY00
+!s100 ;^d^hPQojBY3:39_Lf`ZP1
+R6
+32
+!s110 1544050830
+!i10b 1
+!s108 1544050830.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|//sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 2/bva-b.vhd|
+!s107 //sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 2/bva-b.vhd|
+!i113 1
+R11
+R12
+Edlx_register
+R0
+R2
+R3
+R4
+R5
+l0
+L229
+Va5ob8l9X9]h8[03<nA_l:1
+!s100 9cekk_7H_K8=^<Oh<Q9H]1
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Abehavior
+R2
+R27
+l238
+L238
+Z38 VcISS2?OI_mNUY^Ge<2STc2
+Z39 !s100 ]4[`8fEf;;<m>P?57MhH92
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Pdlx_types
+R16
+R3
+8//sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 2/dlx-types.vhd
+F//sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 2/dlx-types.vhd
+l0
+L2
+VSfgQL^gT<gj;>DaGVOmaZ3
+!s100 E2c;:eYf;hh[jFU?F_ci41
+R6
+32
+!s110 1544050831
+!i10b 1
+!s108 1544050831.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|//sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 2/dlx-types.vhd|
+!s107 //sage.eng.auburn.edu/homes/Documents/aubie_cpu-master/aubie_cpu-master/lab 2/dlx-types.vhd|
+!i113 1
+R11
+R12
+Ememory
+R0
+R1
+R2
+R3
+R4
+R5
+l0
+L322
+Vcmk@YI6lN1MEESX0OL7k`2
+!s100 <mF[3HCZzZ68:a6iEU6X72
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Abehavior
+R1
+R2
+R28
+l334
+L332
+Z40 VXo[Lk1EhVZAcTB;<ZU@VH3
+Z41 !s100 [3I_2kh>H;WO:FJWUnGhP2
+R6
+32
+!s110 1544054021
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Emux
+R0
+R2
+R3
+R4
+R5
+l0
+L276
+VfLT9U5`WgoJjL=7zL;8^:3
+!s100 AU_Zz>4BXA?ZkbklK[;1I2
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Abehavior
+R2
+R25
+l282
+L281
+Z42 VJ^<NKYnz4gkFN`UM3[K4Y2
+Z43 !s100 g3G?=nfH<G:_K_VB;@<;R3
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Epcplusone
+R0
+R1
+R2
+R3
+R4
+R5
+l0
+L254
+V0IaTc1iE=R9e`b<<UX4>_0
+!s100 <5^Y2O2I?bA^=7=]^GF;X1
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Abehavior
+R1
+R2
+R23
+l260
+L259
+Z44 VQUc0doXThljU1TAMSmi7E3
+Z45 !s100 W>>TbP<4Q=7R<NKOdC_EK2
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Ereg_file
+R0
+R1
+R2
+R3
+R4
+R5
+l0
+L7
+V@oe<5gb=j5XjgUI9BRTdY3
+!s100 5KI3FHSkTo9RKY8`_KW`00
+R6
+32
+!s110 1544054019
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Abehavior
+R1
+R2
+R26
+l20
+L18
+VH5ND4ajG`kRM<Ebl=aB8i3
+!s100 hVSiLzVUeR0Vn8Oe5EiE72
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Abehaviour
+R1
+R2
+R26
+l20
+L18
+Vc7odjC[hCWDczSH:m>bTW1
+!s100 ;9DHkAQWG:h4CYe=8UkK`0
+R6
+32
+R14
+!i10b 1
+R15
+R9
+R10
+!i113 1
+R11
+R12
+R16
+Ethreeway_mux
+R0
+R2
+R3
+R4
+R5
+l0
+L297
+VU1bz7f8DFTL>;IT=MWEIJ0
+!s100 mlc7]I=YLSLYRdka_0l7T3
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Abehavior
+R2
+R24
+l303
+L302
+Z46 VHH9M[E:9R?COeQ?DaZNAi3
+Z47 !s100 60[Mi2ZZbzfBg>>RVhTS=3
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
