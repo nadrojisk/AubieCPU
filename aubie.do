@@ -1,4 +1,4 @@
-restart -f
+restart -f -nolist -nowave -nolog -nobreak -novirtuals -noassertions -nofcovers -noatv
 add wave -position insertpoint \
 sim:/aubie/aubie_clock \
 sim:/aubie/aubie_ctl/behav/state \
@@ -26,5 +26,8 @@ sim:/aubie/aubie_regfile/reg_file/registers \
 sim:/aubie/regfile_index \
 sim:/aubie/regfile_readnotwrite \
 sim:/aubie/regfile_in \
-sim:/aubie/regfile_out
+sim:/aubie/regfile_out \
+sim:/aubie/alu_out
 force -freeze sim:/aubie/aubie_clock 0 0, 1 {50 ns} -r 100
+
+run 6500 ns

@@ -9,7 +9,7 @@ use work.dlx_types.all;
 entity aubie_controller is
 	generic(
 	     prop_delay    				: 	Time := 5 ns;
-	     ex_prop_delay 				: 	Time := 15 ns -- Extended prop_delay for allowing other signals to propagate first
+	     ex_prop_delay 				: 	Time := 15 ns -- allows other signals to propagate first
 	);
 	port(
 			ir_control						: 	in dlx_word;
@@ -44,9 +44,9 @@ begin
 		variable opcode: byte;
 		variable destination,operand1,operand2 : register_index;
 		variable op_stor : alu_operation_code := "0111";
-		variable op_jz : alu_operation_code := "1100";
-		variable log_true : dlx_word := x"00000001";
-		variable log_false : dlx_word := x"00000000";
+		variable jz_op : alu_operation_code := "1100";
+		variable logical_true : dlx_word := x"00000001";
+
 
 
 	begin
@@ -71,20 +71,20 @@ begin
 						result_clk <= '0' after prop_delay;
 						state := 2;
 					when 2 => 	-- figure out which operation
-					if opcode(7 downto 4) = "0000" then -- ALU op
-						state := 3;
-					elsif opcode = X"20" then  -- STO
-						state := 9;
-					elsif opcode = X"30" or opcode = X"31" then -- LD or LDI
-						state := 7;
-					elsif opcode = X"22" then -- STOR
-						state := 14;
-					elsif opcode = X"32" then -- LDR
-						state := 12;
-					elsif opcode = X"40" or opcode = X"41" then -- JMP or JZ
-						state := 16;
-					elsif opcode = X"10" then -- NOOP
-						state := 19;
+						if opcode(7 downto 4) = "0000" then -- ALU op
+							state := 3;
+						elsif opcode = X"20" then  -- STO
+							state := 9;
+						elsif opcode = X"30" or opcode = X"31" then -- LD or LDI
+							state := 7;
+						elsif opcode = X"22" then -- STOR
+							state := 14;
+						elsif opcode = X"32" then -- LDR
+							state := 12;
+						elsif opcode = X"40" or opcode = X"41" then -- JMP or JZ
+							state := 16;
+						elsif opcode = X"10" then -- NOOP
+							state := 19;
 						else -- error
 						end if;
 					when 3 => -- ALU op (Step 1)
@@ -144,24 +144,39 @@ begin
 						result_clk <= '0' after prop_delay;
 						state := 1;
 					when 7 => -- LD / LDI (Step 1)
-						-- Grab the addr or immediate word
-						pc_clk <= '1' after prop_delay;
-						pc_mux <= "00" after prop_delay; -- pcplusone_out
-						memaddr_mux <= "00" after prop_delay; -- mux select read from pcplusone_out
-						addr_mux <= '1' after prop_delay; -- input_1 select of mem_out
-						regfile_clk <= '0' after prop_delay;
-						mem_clk <= '1' after prop_delay;
-						mem_readnotwrite <= '1' after prop_delay; -- Memory Read operation
-						op1_clk <= '0' after prop_delay;
-						op2_clk <= '0' after prop_delay;
-						result_clk <= '0' after prop_delay;
-						ir_clk <= '0' after prop_delay;
 						if (opcode = x"30") then -- LD
+						-- load contents of address to register destination
+						-- Increment PC. Copy memory specified by PC into address register
+						-- PC -> PC+1. Mem[PC] --> Addr
+								pc_clk <= '1' after prop_delay;
+								pc_mux <= "00" after prop_delay; -- pcplusone_out
+								memaddr_mux <= "00" after prop_delay; -- mux select read from pcplusone_out
+								addr_mux <= '1' after prop_delay; -- input_1 select of mem_out
+								regfile_clk <= '0' after prop_delay;
+								mem_clk <= '1' after prop_delay;
+								mem_readnotwrite <= '1' after prop_delay; -- Memory Read operation
+								ir_clk <= '0' after prop_delay;
 								imm_clk <= '0' after prop_delay;
 								addr_clk <= '1' after prop_delay;
+								op1_clk <= '0' after prop_delay;
+								op2_clk <= '0' after prop_delay;
+								result_clk <= '0' after prop_delay;
 						elsif (opcode = x"31") then -- LDI
+						-- load immediate value into register destination
+						-- Increment PC. Copy memory specified by PC into immediate register
+						-- PC -> PC+1. Mem[PC] --> Immed
+								pc_clk <= '1' after prop_delay;
+								pc_mux <= "00" after prop_delay; -- pcplusone_out
+								memaddr_mux <= "00" after prop_delay;
+								regfile_clk <= '0' after prop_delay;
+								mem_clk <= '1' after prop_delay;
+								mem_readnotwrite <= '1' after prop_delay;
+								ir_clk <= '0' after prop_delay;
 								imm_clk <= '1' after prop_delay;
 								addr_clk <= '0' after prop_delay;
+								op1_clk <= '0' after prop_delay;
+								op2_clk <= '0' after prop_delay;
+								result_clk <= '0' after prop_delay;
 						end if;
 						state := 8;
 					when 8 => -- LD / LDI (Step 2)
@@ -293,68 +308,69 @@ begin
 						result_clk <= '1' after prop_delay;
 						state := 1;
 					when 16 => -- JMP / JZ (Step 1)
-						-- Increment PC
-						pc_clk <= '1' after prop_delay;
-						pc_mux <= "00" after prop_delay;
-						state := 17;
-					when 17 => -- JMP / JZ (Step 2)
-						-- Load memory specified by PC to Addr reg
-						pc_clk <= '0' after prop_delay;
-						memaddr_mux <= "00" after prop_delay;
-						addr_mux <= '1' after prop_delay;
-						regfile_clk <= '0' after prop_delay;
-						mem_clk <= '1' after prop_delay;
-						mem_readnotwrite <= '1' after prop_delay;
-						ir_clk <= '0' after prop_delay;
-						imm_clk <= '0' after prop_delay;
-						addr_clk <= '1' after prop_delay;
-						op1_clk <= '0' after prop_delay;
-						op2_clk <= '0' after prop_delay;
-						result_clk <= '0' after prop_delay;
-						if (opcode = x"41") then -- JZ
-							state := 20;
-						else  -- JMP
-							state := 18;
-						end if;
-					when 18 => -- JMP (Step 3) / JZ (Step 4)
-						if (opcode = x"40") then -- JMP
-						-- Load memory specified by PC to addr reg
-								pc_mux <= "01" after prop_delay;
-								pc_clk <= '1' after prop_delay;
-						end if;
-						if (opcode = x"41") then -- JZ
-						-- If Result == 0, copy Addr to PC
-					  -- else increment PC
-								if (alu_out = log_true) then
-										pc_mux <= "01" after prop_delay;
-										pc_clk <= '1' after prop_delay;
-								else
-										pc_clk <= '1' after prop_delay;
-										pc_mux <= "00" after prop_delay;
-								end if;
-						end if;
-					  state := 1;
-					when 19 => -- NOOP
-						-- Increment PC
-						pc_mux <= "00" after prop_delay;
-						pc_clk <= '1' after prop_delay;
-						state := 1;
-					when 20 => -- JZ (Step 3)
-						-- copy register op1 to control
-						alu_func <= op_jz after prop_delay;
-						regfile_index <= operand1 after prop_delay;
-						regfile_readnotwrite <= '1' after prop_delay;
-						regfile_clk <= '1' after prop_delay;
-						mem_clk <= '0' after prop_delay;
-						ir_clk <= '0' after prop_delay;
-						imm_clk <= '0' after prop_delay;
-						addr_clk <= '0' after prop_delay;
-						pc_clk <= '0' after prop_delay;
-						op1_clk <= '1' after prop_delay;
-						op2_clk <= '1' after prop_delay;
-						result_clk <= '1' after prop_delay;
-						state := 18;
-					when others => null;
+					 	-- Increment PC --> PC+1
+            pc_mux <= "00" after prop_delay;
+            pc_clk <= '1' after prop_delay;
+            state := 17;
+					when 17 => -- JMP or JZ (Step2):
+            -- Load memory specified by PC to Address register: Mem[PC] --> Addr
+            -- Same thing as State 7 except no need to increment since that was already done in State 16
+            pc_clk <= '0' after prop_delay;
+            memaddr_mux <= "00" after prop_delay; -- mux select read from pcplusone_out
+            addr_mux <= '1' after prop_delay; -- input_1 select of mem_out
+            regfile_clk <= '0' after prop_delay;
+            mem_clk <= '1' after prop_delay;
+            mem_readnotwrite <= '1' after prop_delay; -- Memory Read operation
+            ir_clk <= '0' after prop_delay;
+            imm_clk <= '0' after prop_delay;
+            addr_clk <= '1' after prop_delay;
+            op1_clk <= '0' after prop_delay;
+            op2_clk <= '0' after prop_delay;
+            result_clk <= '0' after prop_delay;
+            state := 18;
+            if (opcode = x"40") then -- JMP
+                state := 18;
+            else -- JZ Intermediate Step to Check if OP1 == 0
+                state := 20;
+            end if;
+        when 18 => -- JMP or JZ (Step3):
+            if (opcode = x"40") then -- JMP
+            -- Load Addr to PC: Addr --> PC
+                pc_mux <= "01" after prop_delay;
+                pc_clk <= '1' after prop_delay;
+            end if;
+            if (opcode = x"41") then -- JZ
+            -- If Result == 0, copy Addr to PC: Addr --> PC, else increment PC --> PC+1
+                if (alu_out = logical_true) then
+                    pc_mux <= "01" after prop_delay;
+                    pc_clk <= '1' after prop_delay;
+                else
+                    pc_clk <= '1' after prop_delay;
+                    pc_mux <= "00" after prop_delay;
+                end if;
+            end if;
+            state := 1;
+        when 19 => -- NOOP: Only increments PC
+            pc_mux <= "00" after prop_delay;
+            pc_clk <= '1' after prop_delay;
+
+            state := 1;
+        when 20 => -- JZ Intermediate Cycle
+            -- copy register op1 to control: Regs[IR[op1]] --> Ctl
+            alu_func <= jz_op after prop_delay;
+            regfile_index <= operand1 after prop_delay;
+            regfile_readnotwrite <= '1' after prop_delay;
+            regfile_clk <= '1' after prop_delay;
+            mem_clk <= '0' after prop_delay;
+            ir_clk <= '0' after prop_delay;
+            imm_clk <= '0' after prop_delay;
+            addr_clk <= '0' after prop_delay;
+            pc_clk <= '0' after prop_delay;
+            op1_clk <= '1' after prop_delay;
+            op2_clk <= '1' after prop_delay;
+            result_clk <= '1' after prop_delay;
+            state := 18;
+        when others => null;
 		   end case;
 		elsif clock'event and clock = '0' then
 			-- reset all the register clocks
@@ -363,7 +379,7 @@ begin
 			ir_clk <= '0' after prop_delay;
 			imm_clk <= '0' after prop_delay;
 			addr_clk <= '0' after prop_delay;
-			pc_clk <= '1' after prop_delay;
+			pc_clk <= '0' after prop_delay;
 			op1_clk <= '0' after prop_delay;
 			op2_clk <= '0' after prop_delay;
 			result_clk <= '0' after prop_delay;
