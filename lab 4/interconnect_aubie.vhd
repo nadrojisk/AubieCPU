@@ -1,3 +1,6 @@
+-- Author Jordan Sosnowski
+-- Lab 4 (CPU) for Computer Architecture
+
 use work.bv_arithmetic.all;
 use work.dlx_types.all;
 

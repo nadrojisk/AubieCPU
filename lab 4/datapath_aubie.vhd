@@ -1,4 +1,5 @@
--- datapath_aubie.vhd
+-- Author Jordan Sosnowski
+-- Lab 4 (CPU) for Computer Architecture
 
 -- entity reg_file (lab 2)
 use work.dlx_types.all;

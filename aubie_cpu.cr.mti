@@ -1,9 +1,28 @@
-{C:/Users/Jordan/Documents/git/aubie_cpu/lab 2/dlx-types.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Jordan/Documents/git/aubie_cpu/lab 2/dlx-types.vhd}
+{C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/control_aubie.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/control_aubie.vhd}
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package bv_arithmetic
+-- Loading package dlx_types
+-- Compiling entity aubie_controller
+-- Compiling architecture behavior of aubie_controller
+
+} {} {}} {C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/bva-b.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/bva-b.vhd}
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Compiling package body bv_arithmetic
+-- Loading package bv_arithmetic
+
+} {} {}} {C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/bva.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/bva.vhd}
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Compiling package bv_arithmetic
+
+} {} {}} {C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/dlx-types.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/dlx-types.vhd}
 Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
 -- Loading package STANDARD
 -- Compiling package dlx_types
 
-} {} {}} {C:/Users/Jordan/Documents/git/aubie_cpu/lab 4/interconnect_aubie.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Jordan/Documents/git/aubie_cpu/lab 4/interconnect_aubie.vhd}
+} {} {}} {C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/interconnect_aubie.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/interconnect_aubie.vhd}
 Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
 -- Loading package STANDARD
 -- Loading package bv_arithmetic
@@ -18,36 +37,5 @@ Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 
 -- Loading entity mux
 -- Loading entity threeway_mux
 -- Loading entity pcplusone
-
-} {} {}} {C:/Users/Jordan/Documents/git/aubie_cpu/lab 2/bva-b.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Jordan/Documents/git/aubie_cpu/lab 2/bva-b.vhd}
-Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
--- Loading package STANDARD
--- Compiling package body bv_arithmetic
--- Loading package bv_arithmetic
-
-} {} {}} {C:/Users/Jordan/Documents/git/aubie_cpu/lab 4/datapath_aubie_v1.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Jordan/Documents/git/aubie_cpu/lab 4/datapath_aubie_v1.vhd}
-Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
--- Loading package STANDARD
--- Loading package dlx_types
--- Loading package bv_arithmetic
--- Compiling entity reg_file
--- Compiling architecture behaviour of reg_file
--- Compiling entity alu
--- Compiling architecture behaviour of ALU
--- Compiling entity dlx_register
--- Compiling architecture behavior of dlx_register
--- Compiling entity pcplusone
--- Compiling architecture behavior of pcplusone
--- Compiling entity mux
--- Compiling architecture behavior of mux
--- Compiling entity threeway_mux
--- Compiling architecture behavior of threeway_mux
--- Compiling entity memory
--- Compiling architecture behavior of memory
-
-} {} {}} {C:/Users/Jordan/Documents/git/aubie_cpu/lab 2/bva.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Jordan/Documents/git/aubie_cpu/lab 2/bva.vhd}
-Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
--- Loading package STANDARD
--- Compiling package bv_arithmetic
 
 } {} {}}

@@ -9,34 +9,34 @@ z2
 cModel Technology
 dC:/Modeltech_pe_edu_10.4a/examples
 Ealu
-Z0 w1543460303
+Z0 w1544067759
 Z1 DPx4 work 13 bv_arithmetic 0 22 ;=2SeGQPb=ziI`4efIfkn0
 Z2 DPx4 work 9 dlx_types 0 22 N;][EXI4VdHCK129TNO5`0
-Z3 dC:/Users/Jordan/Documents/git/aubie_cpu
-Z4 8C:/Users/Jordan/Documents/git/aubie_cpu/lab 4/datapath_aubie_v1.vhd
-Z5 FC:/Users/Jordan/Documents/git/aubie_cpu/lab 4/datapath_aubie_v1.vhd
+Z3 dC:/Users/jsosn/Documents/GitHub/aubie_cpu
+Z4 8C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/datapath_aubie.vhd
+Z5 FC:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/datapath_aubie.vhd
 l0
-L40
-Vd_Engli`XO7GlC1bM<:Ud3
-!s100 hziP2X62OCc=Afz@S>z281
+L41
+VVzQL5VekW9Eo63`z:ih`i0
+!s100 :jzN8Ma35bY`D@?nP`9Vf1
 Z6 OP;C;10.4a;61
 32
-Z7 !s110 1543460618
+Z7 !s110 1544067764
 !i10b 1
-Z8 !s108 1543460618.000000
-Z9 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Jordan/Documents/git/aubie_cpu/lab 4/datapath_aubie_v1.vhd|
-Z10 !s107 C:/Users/Jordan/Documents/git/aubie_cpu/lab 4/datapath_aubie_v1.vhd|
+Z8 !s108 1544067764.000000
+Z9 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/datapath_aubie.vhd|
+Z10 !s107 C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/datapath_aubie.vhd|
 !i113 1
 Z11 o-work work -2002 -explicit -O0
 Z12 tExplicit 1
-Abehaviour
+Abehavior
 R1
 R2
-Z13 DEx4 work 3 alu 0 22 d_Engli`XO7GlC1bM<:Ud3
-l73
-L72
-VF7=zaaLoYMYB6_7R0?6K_3
-!s100 Z@hg[Ui8DdX3>cHOmRk^o2
+Z13 DEx4 work 3 alu 0 22 VzQL5VekW9Eo63`z:ih`i0
+l74
+L73
+Z14 V<1[WkS5n6zihOe=kA8h]22
+Z15 !s100 _:Pj[`UPRX00nf[LDQUJf3
 R6
 32
 R7
@@ -47,97 +47,119 @@ R10
 !i113 1
 R11
 R12
+Abehaviour
+R1
+R2
+DEx4 work 3 alu 0 22 d_Engli`XO7GlC1bM<:Ud3
+l73
+L72
+VF7=zaaLoYMYB6_7R0?6K_3
+!s100 Z@hg[Ui8DdX3>cHOmRk^o2
+R6
+32
+Z16 !s110 1543460618
+!i10b 1
+Z17 !s108 1543460618.000000
+Z18 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Jordan/Documents/git/aubie_cpu/lab 4/datapath_aubie_v1.vhd|
+Z19 !s107 C:/Users/Jordan/Documents/git/aubie_cpu/lab 4/datapath_aubie_v1.vhd|
+!i113 1
+R11
+R12
+Z20 dC:/Users/Jordan/Documents/git/aubie_cpu
+Z21 FC:/Users/Jordan/Documents/git/aubie_cpu/lab 4/datapath_aubie_v1.vhd
+Z22 w1543460303
+Z23 8C:/Users/Jordan/Documents/git/aubie_cpu/lab 4/datapath_aubie_v1.vhd
 Eaubie
-Z14 w1543460704
+Z24 w1544064533
 R2
 R1
 R3
-Z15 8C:/Users/Jordan/Documents/git/aubie_cpu/lab 4/interconnect_aubie.vhd
-Z16 FC:/Users/Jordan/Documents/git/aubie_cpu/lab 4/interconnect_aubie.vhd
+Z25 8C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/interconnect_aubie.vhd
+Z26 FC:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/interconnect_aubie.vhd
 l0
-L6
-V4ESA;O^c<2dJh_zk:5Nng1
-!s100 ^BkcC0=[[Z=7dOM<k:9AG1
+L9
+VUJaTTE1KEAG?9zOKk=1cJ3
+!s100 mYZMaRbKhPJkAIZ:RNoW11
 R6
 32
-Z17 !s110 1543460709
+Z27 !s110 1544067274
 !i10b 1
-Z18 !s108 1543460709.000000
-Z19 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Jordan/Documents/git/aubie_cpu/lab 4/interconnect_aubie.vhd|
-Z20 !s107 C:/Users/Jordan/Documents/git/aubie_cpu/lab 4/interconnect_aubie.vhd|
+Z28 !s108 1544067274.000000
+Z29 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/interconnect_aubie.vhd|
+Z30 !s107 C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/interconnect_aubie.vhd|
 !i113 1
 R11
 R12
 Astruct
-Z21 DEx4 work 9 pcplusone 0 22 [0VK[4dj219?S1_2`z?AV0
-Z22 DEx4 work 12 threeway_mux 0 22 ?0WK_g0SVl3Y>SQzi`LAD0
-Z23 DEx4 work 3 mux 0 22 H^f<CJV^6L;9g=PEW:jY=3
+Z31 DEx4 work 9 pcplusone 0 22 BDbYimE`]f3;lA8Pj[di72
+Z32 DEx4 work 12 threeway_mux 0 22 VLEOGYOj6U1EGRKNB^jaQ0
+Z33 DEx4 work 3 mux 0 22 5KFg^VlzPijV3M>FNnj2k1
 R13
-Z24 DEx4 work 8 reg_file 0 22 o<KBdb=ZdZA[OUA2jJaP@3
-Z25 DEx4 work 12 dlx_register 0 22 >TCUKBz?V9I10l`jF=1MM3
-Z26 DEx4 work 6 memory 0 22 H^hmcNhZC58Q5EJf7<LmL0
-Z27 DEx4 work 16 aubie_controller 0 22 Jk67]4RaMCXWB5HDUk5DZ0
+Z34 DEx4 work 8 reg_file 0 22 :[PUfHQf>oB4_39VUHX0I1
+Z35 DEx4 work 12 dlx_register 0 22 0OEL;0F^9N1IPbfi<UgK02
+Z36 DEx4 work 6 memory 0 22 4amlToBW=B?NQhh9>mI4N1
+Z37 DEx4 work 16 aubie_controller 0 22 HFS_W8l9MTI^8_IKY7aa^0
 R2
 R1
-Z28 DEx4 work 5 aubie 0 22 4ESA;O^c<2dJh_zk:5Nng1
-l40
-L10
-VQiQ`T^Sk[<kK123fAPChT2
-!s100 YVH3S:6O;N7^ZbWS`om3m2
+DEx4 work 5 aubie 0 22 UJaTTE1KEAG?9zOKk=1cJ3
+l43
+L13
+VTQLaU0=dE6nDJ4hn@Ab2l1
+!s100 iMg>=Xi=Y82XOZNF@Igj`2
 R6
 32
-R17
+R27
 !i10b 1
-R18
-R19
-R20
+R28
+R29
+R30
 !i113 1
 R11
 R12
 Eaubie_controller
-R0
+Z38 w1544067256
 R2
 R1
 R3
-Z29 8C:/Users/Jordan/Documents/git/aubie_cpu/lab 4/control_aubie_v1.vhd
-Z30 FC:/Users/Jordan/Documents/git/aubie_cpu/lab 4/control_aubie_v1.vhd
+Z39 8C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/control_aubie.vhd
+Z40 FC:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/control_aubie.vhd
 l0
-L5
-VJk67]4RaMCXWB5HDUk5DZ0
-!s100 @GMI<23]@2h^8`1_;n`m^2
+L9
+VHFS_W8l9MTI^8_IKY7aa^0
+!s100 Eff[C]7TQIFZLgBUSHk7i2
 R6
 32
-R7
+R27
 !i10b 1
-R8
-Z31 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Jordan/Documents/git/aubie_cpu/lab 4/control_aubie_v1.vhd|
-Z32 !s107 C:/Users/Jordan/Documents/git/aubie_cpu/lab 4/control_aubie_v1.vhd|
+R28
+Z41 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/control_aubie.vhd|
+Z42 !s107 C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 4/control_aubie.vhd|
 !i113 1
 R11
 R12
 Abehavior
 R2
 R1
-R27
-l35
-L34
-Veah?g18=Y<COJ_;5SCjZk0
-!s100 bKNeWacUL1`D1E=BUQEEQ0
+R37
+l40
+L39
+V9kia7n@D<lYE>bgV4mYgk1
+!s100 ZDUfE@OO]NkPjAOOf3h592
 R6
 32
-R7
+R27
 !i10b 1
-R8
-R31
-R32
+R28
+R41
+R42
 !i113 1
 R11
 R12
 Pbv_arithmetic
-R0
+w1541096772
 R3
-8C:/Users/Jordan/Documents/git/aubie_cpu/lab 2/bva.vhd
-FC:/Users/Jordan/Documents/git/aubie_cpu/lab 2/bva.vhd
+8C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/bva.vhd
+FC:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/bva.vhd
 l0
 L15
 V;=2SeGQPb=ziI`4efIfkn0
@@ -145,29 +167,30 @@ V;=2SeGQPb=ziI`4efIfkn0
 R6
 32
 b1
-Z33 !s110 1543460619
+R27
 !i10b 1
-Z34 !s108 1543460619.000000
-!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Jordan/Documents/git/aubie_cpu/lab 2/bva.vhd|
-!s107 C:/Users/Jordan/Documents/git/aubie_cpu/lab 2/bva.vhd|
+R28
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/bva.vhd|
+!s107 C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/bva.vhd|
 !i113 1
 R11
 R12
 Bbody
 R1
-8C:/Users/Jordan/Documents/git/aubie_cpu/lab 2/bva-b.vhd
-FC:/Users/Jordan/Documents/git/aubie_cpu/lab 2/bva-b.vhd
+w1541096777
+8C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/bva-b.vhd
+FC:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/bva-b.vhd
 l0
 L1
 VLPF@=`8X>]9I@:nc^2mYE3
 !s100 ;^d^hPQojBY3:39_Lf`ZP1
 R6
 32
-R33
+R27
 !i10b 1
-R34
-!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Jordan/Documents/git/aubie_cpu/lab 2/bva-b.vhd|
-!s107 C:/Users/Jordan/Documents/git/aubie_cpu/lab 2/bva-b.vhd|
+R28
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/bva-b.vhd|
+!s107 C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/bva-b.vhd|
 !i113 1
 R11
 R12
@@ -179,9 +202,9 @@ R3
 R4
 R5
 l0
-L229
-V>TCUKBz?V9I10l`jF=1MM3
-!s100 9cekk_7H_K8=^<Oh<Q9H]1
+L230
+V0OEL;0F^9N1IPbfi<UgK02
+!s100 F3BM_XbMFbcQSN7Xhhc2M3
 R6
 32
 R7
@@ -194,11 +217,11 @@ R11
 R12
 Abehavior
 R2
-R25
-l238
-L238
-V<3VC5_00`EKz0aHzH=DGS3
-!s100 ]4[`8fEf;;<m>P?57MhH92
+R35
+l239
+L239
+Z43 V4<7edl8KQW[d]`oj7]_`g1
+Z44 !s100 7mn0E1]l^KHKG9=`2io:L2
 R6
 32
 R7
@@ -210,21 +233,21 @@ R10
 R11
 R12
 Pdlx_types
-R0
+w1541096755
 R3
-8C:/Users/Jordan/Documents/git/aubie_cpu/lab 2/dlx-types.vhd
-FC:/Users/Jordan/Documents/git/aubie_cpu/lab 2/dlx-types.vhd
+8C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/dlx-types.vhd
+FC:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/dlx-types.vhd
 l0
 L2
 VN;][EXI4VdHCK129TNO5`0
 !s100 E2c;:eYf;hh[jFU?F_ci41
 R6
 32
-R33
+R27
 !i10b 1
-R34
-!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Jordan/Documents/git/aubie_cpu/lab 2/dlx-types.vhd|
-!s107 C:/Users/Jordan/Documents/git/aubie_cpu/lab 2/dlx-types.vhd|
+R28
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/dlx-types.vhd|
+!s107 C:/Users/jsosn/Documents/GitHub/aubie_cpu/lab 2/dlx-types.vhd|
 !i113 1
 R11
 R12
@@ -236,9 +259,9 @@ R3
 R4
 R5
 l0
-L322
-VH^hmcNhZC58Q5EJf7<LmL0
-!s100 <mF[3HCZzZ68:a6iEU6X72
+L323
+V4amlToBW=B?NQhh9>mI4N1
+!s100 acCfWY9JKo6KL6YdLoAnO2
 R6
 32
 R7
@@ -252,11 +275,11 @@ R12
 Abehavior
 R1
 R2
-R26
-l334
-L332
-V>4IF@Y?F28MND[KN22bC21
-!s100 ;R:FZW5;9BfH6DBTZQDB11
+R36
+l335
+L333
+Vbb1obh_SN?7z00mH;A?0X3
+!s100 Q?boR7N[ZeXhEaY8QhR_n2
 R6
 32
 R7
@@ -274,9 +297,9 @@ R3
 R4
 R5
 l0
-L276
-VH^f<CJV^6L;9g=PEW:jY=3
-!s100 AU_Zz>4BXA?ZkbklK[;1I2
+L277
+V5KFg^VlzPijV3M>FNnj2k1
+!s100 L_U0YfonLL8fRB0hbnloY2
 R6
 32
 R7
@@ -289,11 +312,11 @@ R11
 R12
 Abehavior
 R2
-R23
-l282
-L281
-V;9GGSi@KJT2NEaB_@MZhS3
-!s100 g3G?=nfH<G:_K_VB;@<;R3
+R33
+l283
+L282
+Z45 Vke2ffVdDb1TL5:Bf`XILN0
+Z46 !s100 Rf3YTR^h:JzVSImd60dog3
 R6
 32
 R7
@@ -312,9 +335,9 @@ R3
 R4
 R5
 l0
-L254
-V[0VK[4dj219?S1_2`z?AV0
-!s100 <5^Y2O2I?bA^=7=]^GF;X1
+L255
+VBDbYimE`]f3;lA8Pj[di72
+!s100 I6`h3GFNVK4H07=@a4dao3
 R6
 32
 R7
@@ -328,11 +351,11 @@ R12
 Abehavior
 R1
 R2
-R21
-l260
-L259
-VY46ZemfWV<?Wn5PeT7Aae3
-!s100 W>>TbP<4Q=7R<NKOdC_EK2
+R31
+l261
+L260
+Z47 V?IOdKlLLgJQfQZO;HYFeT1
+Z48 !s100 Lj<A41C<kbC1VJ4MHRd[C1
 R6
 32
 R7
@@ -351,9 +374,27 @@ R3
 R4
 R5
 l0
-L7
-Vo<KBdb=ZdZA[OUA2jJaP@3
-!s100 5KI3FHSkTo9RKY8`_KW`00
+L8
+V:[PUfHQf>oB4_39VUHX0I1
+!s100 gD1c25XVDYZP^7zGPHHgm0
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Abehavior
+R1
+R2
+R34
+l21
+L19
+Z49 V<:CHCXeOe4;ol8df`RFEh2
+Z50 !s100 Pz]LVcnDDAbWI]:HmG@XP2
 R6
 32
 R7
@@ -367,21 +408,25 @@ R12
 Abehaviour
 R1
 R2
-R24
+DEx4 work 8 reg_file 0 22 o<KBdb=ZdZA[OUA2jJaP@3
 l20
 L18
 VSdg5@O2M<F^?O<:V`2GGN2
 !s100 ;9DHkAQWG:h4CYe=8UkK`0
 R6
 32
-R7
+R16
 !i10b 1
-R8
-R9
-R10
+R17
+R18
+R19
 !i113 1
 R11
 R12
+R20
+R21
+R22
+R23
 Ethreeway_mux
 R0
 R2
@@ -389,9 +434,9 @@ R3
 R4
 R5
 l0
-L297
-V?0WK_g0SVl3Y>SQzi`LAD0
-!s100 mlc7]I=YLSLYRdka_0l7T3
+L298
+VVLEOGYOj6U1EGRKNB^jaQ0
+!s100 DSDAeUO<<>EL=LGcXCAJ02
 R6
 32
 R7
@@ -404,11 +449,11 @@ R11
 R12
 Abehavior
 R2
-R22
-l303
-L302
-VVdOn0e:`UVC22D][zT;dW1
-!s100 60[Mi2ZZbzfBg>>RVhTS=3
+R32
+l304
+L303
+Z51 VT_c=G6F3FAHePHZ^Nl91F0
+Z52 !s100 ThAbJKbY4HdXd5OBSU1VP0
 R6
 32
 R7
