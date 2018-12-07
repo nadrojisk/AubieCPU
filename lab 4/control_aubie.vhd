@@ -128,7 +128,7 @@ begin
           op2_clk     <= '0'                after prop_delay;
           result_clk  <= '1'                after prop_delay;  -- high so it can accept alu data
           state       := 6;
-        when 6 =>        ALU op (Step 4)
+        when 6 =>    -- ALU op (Step 4)
           -- Write back ALU result
           regfilein_mux        <= "00"        after prop_delay;  -- selects result
           pc_mux               <= "00"        after prop_delay;  -- selects pcplusone_out
