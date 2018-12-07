@@ -70,25 +70,25 @@ begin
           op2_clk          <= '0'  after prop_delay;
           result_clk       <= '0'  after prop_delay;
           state            := 2;
-        when 2 =>                       -- figure out which operation
-          if opcode(7 downto 4) = "0000" then        -- ALU op
+        when 2 =>   -- figure out which operation
+          if opcode(7 downto 4) = "0000" then           -- ALU op
             state := 3;
-          elsif opcode = X"20" then     -- STO
+          elsif opcode = X"20" then                     -- STO
             state := 9;
           elsif opcode = X"30" or opcode = X"31" then   -- LD or LDI
             state := 7;
-          elsif opcode = X"22" then     -- STOR
+          elsif opcode = X"22" then                     -- STOR
             state := 14;
-          elsif opcode = X"32" then     -- LDR
+          elsif opcode = X"32" then                     -- LDR
             state := 12;
           elsif opcode = X"40" or opcode = X"41" then   -- JMP or JZ
             state := 16;
-          elsif opcode = X"10" then     -- NOOP
+          elsif opcode = X"10" then                     -- NOOP
             state := 19;
-          else                          -- error
+          else                                          -- error
           end if;
-        when 3 =>                       -- ALU op (Step 1)
-                            -- load operand 1 register from the regfile to op1
+        when 3 =>  -- ALU op (Step 1)
+          -- load operand 1 register from the regfile to op1
           regfile_index        <= operand1 after prop_delay;
           regfile_readnotwrite <= '1'      after prop_delay;  -- reading op from regfile
           regfile_clk          <= '1'      after prop_delay;  -- high so register can receive value
@@ -101,8 +101,8 @@ begin
           op2_clk              <= '0'      after prop_delay;
           result_clk           <= '0'      after prop_delay;
           state                := 4;
-        when 4 =>                       -- ALU op (Step 2)
-                            -- load op2 registear from the regfile
+        when 4 =>   -- ALU op (Step 2)
+          -- load op2 registear from the regfile
           regfile_index        <= operand2 after prop_delay;
           regfile_readnotwrite <= '1'      after prop_delay;
           regfile_clk          <= '1'      after prop_delay;
@@ -115,8 +115,8 @@ begin
           op2_clk              <= '1'      after prop_delay;  -- needs to be high so it can accept regfile data
           result_clk           <= '0'      after prop_delay;
           state                := 5;
-        when 5 =>                       -- ALU op (Step 3)
-                            -- Perform ALU operation
+        when 5 =>    -- ALU op (Step 3)
+          -- Perform ALU operation
           alu_func    <= opcode(3 downto 0) after prop_delay;
           regfile_clk <= '0'                after prop_delay;
           mem_clk     <= '0'                after prop_delay;
@@ -128,8 +128,8 @@ begin
           op2_clk     <= '0'                after prop_delay;
           result_clk  <= '1'                after prop_delay;  -- high so it can accept alu data
           state       := 6;
-        when 6 =>                       -- ALU op (Step 4)
-                            -- Write back ALU result
+        when 6 =>        ALU op (Step 4)
+          -- Write back ALU result
           regfilein_mux        <= "00"        after prop_delay;  -- selects result
           pc_mux               <= "00"        after prop_delay;  -- selects pcplusone_out
           regfile_index        <= destination after prop_delay;
@@ -143,11 +143,10 @@ begin
           op2_clk              <= '0'         after prop_delay;
           result_clk           <= '0'         after prop_delay;
           state                := 1;
-        when 7 =>                       -- LD / LDI (Step 1)
-          if (opcode = x"30") then      -- LD
-                   -- load contents of address to register destination
-                   -- Increment PC. Copy memory specified by PC into address register
-                   -- PC -> PC+1. Mem[PC] --> Addr
+        when 7 =>    -- LD / LDI (Step 1)
+          if (opcode = x"30") then    -- LD
+            -- load contents of address to register destination
+            -- Increment PC. Copy memory specified by PC into address register
             pc_clk           <= '1'  after prop_delay;
             pc_mux           <= "00" after prop_delay;  -- pcplusone_out
             memaddr_mux      <= "00" after prop_delay;  -- mux select read from pcplusone_out
@@ -161,10 +160,9 @@ begin
             op1_clk          <= '0'  after prop_delay;
             op2_clk          <= '0'  after prop_delay;
             result_clk       <= '0'  after prop_delay;
-          elsif (opcode = x"31") then   -- LDI
-                   -- load immediate value into register destination
-                   -- Increment PC. Copy memory specified by PC into immediate register
-                   -- PC -> PC+1. Mem[PC] --> Immed
+          elsif (opcode = x"31") then    -- LDI
+            -- load immediate value into register destination
+            -- Increment PC. Copy memory specified by PC into immediate register
             pc_clk           <= '1'  after prop_delay;
             pc_mux           <= "00" after prop_delay;  -- pcplusone_out
             memaddr_mux      <= "00" after prop_delay;
@@ -179,15 +177,15 @@ begin
             result_clk       <= '0'  after prop_delay;
           end if;
           state := 8;
-        when 8 =>                       -- LD / LDI (Step 2)
-                            -- Copy value to register
-          if (opcode = x"30") then      -- LD
+        when 8 =>    -- LD / LDI (Step 2)
+          -- Copy value to register
+          if (opcode = x"30") then    -- LD
             regfilein_mux    <= "01" after prop_delay;
             memaddr_mux      <= "01" after prop_delay;
             mem_clk          <= '1'  after prop_delay;
             mem_readnotwrite <= '1'  after prop_delay;
             imm_clk          <= '0'  after prop_delay;
-          elsif (opcode = x"31") then   -- LDI
+          elsif (opcode = x"31") then    -- LDI
             regfilein_mux <= "10" after prop_delay;  -- mux selector for immediate register out
             mem_clk       <= '0'  after prop_delay;
             imm_clk       <= '1'  after prop_delay;
@@ -203,15 +201,15 @@ begin
           result_clk           <= '0'         after prop_delay;
           pc_clk               <= '0'         after prop_delay, '1' after ex_prop_delay;
           pc_mux               <= "00"        after ex_prop_delay;
-                    -- Don't want to increment PC until after other values are propagated
+          -- Don't want to increment PC until after other values are propagated
           state                := 1;
-        when 9 =>                       -- STO (Step 1)
-                            -- Increment PC
+        when 9 =>    -- STO (Step 1)
+          -- Increment PC
           pc_mux <= "00" after prop_delay;
           pc_clk <= '1'  after prop_delay;
           state  := 10;
-        when 10 =>                      -- STO (Step 2)
-                             -- Load memory to address register
+        when 10 =>    -- STO (Step 2)
+          -- Load memory to address register
           memaddr_mux      <= "00" after prop_delay;
           addr_mux         <= '1'  after prop_delay;
           regfile_clk      <= '0'  after prop_delay;
@@ -225,9 +223,9 @@ begin
           result_clk       <= '0'  after prop_delay;
           pc_clk           <= '0'  after prop_delay;
           state            := 11;
-        when 11 =>                      -- STO (Step 3)
-                             -- Store contents of source to address in memory given by addr reg
-                                       -- then increment pc
+        when 11 =>    -- STO (Step 3)
+          -- Store contents of source to address in memory given by addr reg
+          -- then increment pc
           memaddr_mux          <= "00" after prop_delay;
           pc_mux               <= "01" after prop_delay, "00" after ex_prop_delay;
           regfile_readnotwrite <= '1'  after prop_delay;
@@ -240,8 +238,8 @@ begin
           op2_clk              <= '0'  after prop_delay;
           result_clk           <= '0'  after prop_delay;
           state                := 1;
-        when 12 =>                      -- LDR (Step 1)
-                             -- Copy contents of operand1 reg to addr reg
+        when 12 =>    -- LDR (Step 1)
+          -- Copy contents of operand1 reg to addr reg
           addr_mux             <= '0'      after prop_delay;
           regfile_index        <= operand1 after prop_delay;
           regfile_readnotwrite <= '1'      after prop_delay;
@@ -255,8 +253,8 @@ begin
           op2_clk              <= '0'      after prop_delay;
           result_clk           <= '0'      after prop_delay;
           state                := 13;
-        when 13 =>                      -- LDR (Step 2)
-                             -- copy contetns of memory specified by addr reg to dest reg
+        when 13 =>    -- LDR (Step 2)
+          -- copy contetns of memory specified by addr reg to dest reg
           regfilein_mux        <= "01"        after prop_delay;
           memaddr_mux          <= "01"        after prop_delay;
           regfile_index        <= destination after prop_delay;
@@ -274,8 +272,8 @@ begin
           pc_clk               <= '0'         after prop_delay, '1' after ex_prop_delay;
           pc_mux               <= "00"        after ex_prop_delay;
           state                := 1;
-        when 14 =>                      -- STOR (Step 1)
-                             -- Copy contents of dest reg into addr reg
+        when 14 =>    -- STOR (Step 1)
+          -- Copy contents of dest reg into addr reg
           addr_mux             <= '0'         after prop_delay;
           regfile_index        <= destination after prop_delay;
           regfile_readnotwrite <= '1'         after prop_delay;
@@ -289,8 +287,8 @@ begin
           op2_clk              <= '0'         after prop_delay;
           result_clk           <= '0'         after prop_delay;
           state                := 15;
-        when 15 =>                      -- STOR (Step 2)
-                             -- Copy contents of operand1 reg to memory address
+        when 15 =>    -- STOR (Step 2)
+          -- Copy contents of operand1 reg to memory address
           memaddr_mux          <= "00"     after prop_delay;
           pc_mux               <= "01"     after prop_delay, "00" after ex_prop_delay;
           alu_func             <= op_stor  after prop_delay;
@@ -307,12 +305,12 @@ begin
           op2_clk              <= '1'      after prop_delay;
           result_clk           <= '1'      after prop_delay;
           state                := 1;
-        when 16 =>                      -- JMP / JZ (Step 1)
-                             -- Increment PC --> PC+1
+        when 16 =>    -- JMP / JZ (Step 1)
+          -- Increment PC --> PC+1
           pc_mux <= "00" after prop_delay;
           pc_clk <= '1'  after prop_delay;
           state  := 17;
-        when 17 =>                      -- JMP or JZ (Step2):
+        when 17 =>    -- JMP or JZ (Step2):
           -- Load memory specified by PC to Address register: Mem[PC] --> Addr
           -- Same thing as State 7 except no need to increment since that was already done in State 16
           pc_clk           <= '0'  after prop_delay;
@@ -328,19 +326,19 @@ begin
           op2_clk          <= '0'  after prop_delay;
           result_clk       <= '0'  after prop_delay;
           state            := 18;
-          if (opcode = x"40") then      -- JMP
+          if (opcode = x"40") then    -- JMP
             state := 18;
-          else      -- JZ Intermediate Step to Check if OP1 == 0
+          else    -- JZ Intermediate Step to Check if OP1 == 0
             state := 20;
           end if;
-        when 18 =>                      -- JMP or JZ (Step3):
-          if (opcode = x"40") then      -- JMP
-            -- Load Addr to PC: Addr --> PC
+        when 18 =>    -- JMP or JZ (Step3):
+          if (opcode = x"40") then    -- JMP
+            -- Load Addr to PC
             pc_mux <= "01" after prop_delay;
             pc_clk <= '1'  after prop_delay;
           end if;
-          if (opcode = x"41") then      -- JZ
-            -- If Result == 0, copy Addr to PC: Addr --> PC, else increment PC --> PC+1
+          if (opcode = x"41") then    -- JZ
+            -- If Result == 0, copy Addr to PC:  else increment PC
             if (alu_out = logical_true) then
               pc_mux <= "01" after prop_delay;
               pc_clk <= '1'  after prop_delay;
@@ -350,13 +348,13 @@ begin
             end if;
           end if;
           state := 1;
-        when 19 =>                      -- NOOP: Only increments PC
+        when 19 =>    -- NOOP: Only increments PC
           pc_mux <= "00" after prop_delay;
           pc_clk <= '1'  after prop_delay;
 
           state := 1;
-        when 20 =>                      -- JZ Intermediate Cycle
-          -- copy register op1 to control: Regs[IR[op1]] --> Ctl
+        when 20 =>    -- JZ Intermediate Cycle
+          -- copy register op1 to control
           alu_func             <= jz_op    after prop_delay;
           regfile_index        <= operand1 after prop_delay;
           regfile_readnotwrite <= '1'      after prop_delay;

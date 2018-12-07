@@ -358,16 +358,16 @@ begin  -- behavior
   begin
     -- fill this in by hand to put some values in there
     -- some instructions
-    data_memory(0) := X"30200000";      --LD R4, 0x100 = 256
+    data_memory(0) := X"30200000";      --LD R4, 0x100
     data_memory(1) := X"00000100";  -- address 0x100 for previous instruction
     -- R4 = Contents of Mem Addr x100 = x"5500FF00"
 
-    data_memory(2) := X"30080000";      -- LD R1, 0x101 = 257
+    data_memory(2) := X"30080000";      -- LD R1, 0x101
     data_memory(3) := X"00000101";  -- address 0x101 for previous instruction
     -- R1 = Contents of Mem Addd x101 = x"AA00FF00"
 
 
-    data_memory(4) := X"30100000";      -- LD R2, 0x102 = 258
+    data_memory(4) := X"30100000";      -- LD R2, 0x102
     data_memory(5) := X"00000102";  -- address 0x102 for previous instruction
     -- R2 = Contents of Mem Addr x102 = x"00000001"
 
@@ -391,7 +391,7 @@ begin  -- behavior
 
     data_memory(13) := x"40000000";     -- JMP to 261 = x"105"
     data_memory(14) := x"00000105";  -- Address to jump to for previous instruction
-    -- JMP to Mem Addr x"105" is an Add Operation --> SUBU R11, R1, R2 => Contents of R11 = x"AA00FF01"
+    -- JMP to Mem Addr x"105" is an Add Operation --> SUBU R11, R1, R2 => Contents of R11 = x"AA00FEFF"
 
     -- note that this code runs every time an input signal to memory changes,
     -- so for testing, write to some other locations besides these
@@ -404,7 +404,7 @@ begin  -- behavior
 
     data_memory(262) := x"4101C000";  -- JZ R7, 267 = x"10B" -- If R7 == 0, GOTO Addr 267
     data_memory(263) := x"0000010B";  -- Address to jump to for previous instruction
-    -- JZ to Mem Addr x"10B" is an Add Operation --> ADDU R12, R1 R2 => Contents of R12 = x"AA00FF01"
+    -- JZ to Mem Addr x"10B" is an SUBU Operation --> SUBU R12, R1 R2 => Contents of R12 = x"AA00FEFF"
 
     -- We jumped here from Addr 263 = x"00000107"
     data_memory(267) := x"01604400";    -- SUBU R12, R1 R2
